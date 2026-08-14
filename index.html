@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pylon Admin</title>
+    <meta
+        name="description"
+        content="Pylon administration dashboard"
+    >
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- Mobile backdrop -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <div class="app">
+
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+
+            <div class="sidebar-header">
+                <a href="#" class="brand">
+                    <span class="brand-mark">P</span>
+                    <span class="brand-name">Pylon</span>
+                </a>
+
+                <button
+                    class="sidebar-close"
+                    id="sidebarClose"
+                    aria-label="Close navigation"
+                >
+                    ×
+                </button>
+            </div>
+
+            <nav class="navigation" aria-label="Main navigation">
+
+                <p class="nav-section-title">Workspace</p>
+
+                <a href="#" class="nav-item active" data-page="Dashboard">
+                    <span class="nav-icon">⌂</span>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="#" class="nav-item" data-page="Applications">
+                    <span class="nav-icon">▣</span>
+                    <span>Applications</span>
+                </a>
+
+                <a href="#" class="nav-item" data-page="Companies">
+                    <span class="nav-icon">▥</span>
+                    <span>Companies</span>
+                </a>
+
+                <a href="#" class="nav-item" data-page="Configurations">
+                    <span class="nav-icon">⚙</span>
+                    <span>Configurations</span>
+                </a>
+
+                <p class="nav-section-title">Operations</p>
+
+                <a href="#" class="nav-item" data-page="Deployments">
+                    <span class="nav-icon">↗</span>
+                    <span>Deployments</span>
+                </a>
+
+                <a href="#" class="nav-item" data-page="API Keys">
+                    <span class="nav-icon">⌘</span>
+                    <span>API Keys</span>
+                </a>
+
+                <a href="#" class="nav-item" data-page="Activity">
+                    <span class="nav-icon">◷</span>
+                    <span>Activity</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-footer">
+
+                <a href="#" class="nav-item" data-page="Settings">
+                    <span class="nav-icon">⚙</span>
+                    <span>Settings</span>
+                </a>
+
+                <div class="user-card">
+                    <div class="avatar">MT</div>
+
+                    <div class="user-info">
+                        <strong>Admin User</strong>
+                        <span>Administrator</span>
+                    </div>
+
+                    <button class="user-menu" aria-label="User menu">
+                        ⋮
+                    </button>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- Main application -->
+        <div class="main">
+
+            <!-- Topbar -->
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <button
+                        class="menu-toggle"
+                        id="menuToggle"
+                        aria-label="Open navigation"
+                    >
+                        ☰
+                    </button>
+
+                    <div class="breadcrumbs">
+                        <span>Pylon</span>
+                        <span class="breadcrumb-separator">/</span>
+                        <strong id="breadcrumbCurrent">
+                            Dashboard
+                        </strong>
+                    </div>
+
+                </div>
+
+                <div class="topbar-actions">
+
+                    <button class="icon-button" aria-label="Notifications">
+                        ♢
+                    </button>
+
+                    <div class="topbar-avatar">
+                        MT
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- Content -->
+            <main class="content">
+
+                <div class="page-header">
+
+                    <div>
+                        <p class="eyebrow">Overview</p>
+
+                        <h1 id="pageTitle">
+                            Dashboard
+                        </h1>
+
+                        <p id="pageDescription">
+                            Monitor your applications, configurations,
+                            and deployments.
+                        </p>
+                    </div>
+
+                    <div class="page-actions">
+                        <button class="button button-secondary">
+                            Documentation
+                        </button>
+
+                        <button class="button button-primary">
+                            + New Application
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <!-- Placeholder content -->
+                <section class="empty-dashboard">
+
+                    <div class="empty-icon">
+                        P
+                    </div>
+
+                    <h2>Pylon Admin</h2>
+
+                    <p>
+                        Your administration workspace is ready.
+                        Dashboard modules will appear here.
+                    </p>
+
+                </section>
+
+            </main>
+
+        </div>
+
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
