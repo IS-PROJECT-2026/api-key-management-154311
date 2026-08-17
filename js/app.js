@@ -22,7 +22,7 @@ const pages = {
         eyebrow: "Overview",
         title: "Dashboard",
         description: "Monitor your applications, configurations, and deployments.",
-        action: "+ New Application",
+        action: "",
         content: `
             <div class="empty-dashboard">
                 <div class="empty-icon">&#x2302;</div>
@@ -44,7 +44,7 @@ const pages = {
         eyebrow: "Workspace",
         title: "Companies",
         description: "View and manage company profiles linked to your workspace.",
-        action: "+ Add Company",
+        action: "",
         content: `
             <div class="empty-dashboard">
                 <div class="empty-icon">&#x25A5;</div>
@@ -58,7 +58,7 @@ const pages = {
         eyebrow: "Workspace",
         title: "Configurations",
         description: "Centralized configuration management for all your applications.",
-        action: "+ New Configuration",
+        action: "",
         content: `
             <div class="empty-dashboard">
                 <div class="empty-icon">&#x2699;</div>
@@ -72,7 +72,7 @@ const pages = {
         eyebrow: "Operations",
         title: "Deployments",
         description: "Track deployment history and status across all environments.",
-        action: "+ New Deployment",
+        action: "",
         content: `
             <div class="empty-dashboard">
                 <div class="empty-icon">&#x2197;</div>
@@ -86,7 +86,7 @@ const pages = {
         eyebrow: "Operations",
         title: "API Keys",
         description: "Manage API keys used to authenticate requests to your services.",
-        action: "+ Generate Key",
+        action: "",
         content: buildApiKeysTable()
     }
 };
