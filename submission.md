@@ -60,34 +60,35 @@ Demonstrate your workflow mechanics by embedding your screenshots below.
 
 _Provide a screenshot showing your active milestone(s) and the granular tracking issues linked directly to them._
 
-[PASTE YOUR MILESTONE SCREENSHOT DIRECTLY HERE]
+<img width="1920" height="487" alt="image" src="https://github.com/user-attachments/assets/d401041f-5ca0-49d3-8dac-61fdbee9c546" />
 
-- **Caption:** [Write a brief sentence describing your milestones here]
+
+- **Caption:** The Git Workflow & Merge Conflict Resolution milestone contains granular issues for demonstrating and resolving three distinct merge conflict scenarios, with each issue linked to the milestone for structured tracking.
 
 ### B. Project Board
 
 _Provide a screenshot of your GitHub Project Board with your issues organized dynamically across columns (To Do, In Progress, Done)._
 
-[PASTE YOUR PROJECT BOARD SCREENSHOT DIRECTLY HERE]
+<img width="1237" height="929" alt="Screenshot from 2026-08-17 21-29-29" src="https://github.com/user-attachments/assets/4ee80c09-84ed-4d03-9204-9019ad1e49e7" />
 
-- **Caption:** [Write a brief sentence describing your board state here]
+- **Caption:** The project board demonstrates active workflow progression, with merge-conflict tasks moving from **To Do** through **In Progress** to **Done** as development and review activities are completed.
 
 ### C. Branching Architecture
 
 _Provide a screenshot showing your local or remote Git branch list, highlighting your use of conventional, issue-linked naming patterns (e.g., `feat/`, `fix/`, `style/`)._
 
-[PASTE YOUR BRANCHING SCREENSHOT DIRECTLY HERE]
+<img width="1305" height="745" alt="image" src="https://github.com/user-attachments/assets/5d5a4325-70ac-4df7-b65c-f2ff3a69fd5b" />
 
-- **Caption:** [Write a brief sentence describing your branch list here]
+
+- **Caption:** The branch architecture demonstrates isolated development through issue-linked `feat/`, `docs/`, and other conventional branch prefixes, with changes developed separately from `main`.
 
 ### D. Pull Requests & Traceability
 
 _Provide a screenshot of a completed or open Pull Request (PR) on GitHub that clearly shows it is linked to a related development issue._
 
-[PASTE YOUR PULL REQUEST SCREENSHOT DIRECTLY HERE]
+<img width="924" height="707" alt="image" src="https://github.com/user-attachments/assets/aad04243-1563-4754-8dd7-939e90e4e829" />
 
-- **Caption:** [Write a brief sentence describing your PR and what issue it closes]
-
+- **Caption:** PR #19 implements the dashboard analytics task and closes Issue #11, providing traceability to the merged changes.
 ---
 
 ## 5. Merge Conflict Evidence
@@ -100,57 +101,59 @@ You must engineer **three merge conflicts**, each triggered by a **different cau
 
 ### Conflict 1 — Full Chronology
 
-**What cause did you use?** [Name the type of conflict cause from the lecture]
+**What cause did you use?** Same-line content modification conflict.
 
 #### Step 1: Generating the Clash
 
 _Screenshot showing the merge attempt and the conflict warning._
 
-[PASTE SCREENSHOT OF ATTEMPTED MERGE / TERMINAL WARNING HERE]
+<img width="477" height="84" alt="Screenshot from 2026-08-17 23-16-23" src="https://github.com/user-attachments/assets/9392300f-6d8a-4ee8-b8f5-732737392edc" />
 
-- **Caption:** [Describe which two branches collided and the warning received]
+- **Caption:** The `feat/conflict-1-production` branch was merged into `feat/21-conflict-1-staging`, but Git detected a content conflict because both branches modified the same `Environment` line in `conflict1.txt`.
 
 #### Step 2: Inside the Code Editor (Conflict Markers)
 
 _Screenshot showing the raw, unresolved conflict markers (`<<<<<<< HEAD`, `=======`, `>>>>>>>`) in your editor._
 
-[PASTE SCREENSHOT OF RAW CONFLICT MARKERS HERE]
+<img width="1389" height="343" alt="Screenshot from 2026-08-17 21-47-55" src="https://github.com/user-attachments/assets/b4691f61-786d-4278-8ca4-184de9501c91" />
 
-- **Caption:** [Explain what caused the dispute and your reasoning for the final version]
+
+- **Caption:** The conflict markers show the competing `Staging` and `Production` values on the same line. The conflict was resolved by accepting the incoming `Production` version and removing the conflict markers.
 
 #### Step 3: Resolution & Clean Merge
 
 _Screenshot of your clean Git history or completed PR showing the conflict was resolved and merged._
 
-[PASTE SCREENSHOT OF CLEAN RESOLUTION HERE]
+<img width="1920" height="884" alt="image" src="https://github.com/user-attachments/assets/32e3a750-21cf-4b21-8f33-9eb32126d8bd" />
 
-- **Caption:** [Describe the final state after resolution]
+
+- **Caption:** The conflict was resolved by retaining the `Production` configuration. The resolution was committed using a Conventional Commit, pushed to the feature branch, reviewed through a pull request, and successfully merged into `main`.
 
 ---
 
 ### Conflict 2 — Different Cause
 
-**What cause did you use?** [Name the type of conflict cause — must be different from Conflict 1]
+**What cause did you use?** Add/Add conflict.
 
-**Why does this cause trigger a conflict?** [1–2 sentences explaining the mechanism]
+**Why does this cause trigger a conflict?** An add/add conflict occurs when two branches independently create a file with the same path but different contents. Git cannot automatically determine which version of the newly created file should be retained, requiring manual resolution.
 
-[PASTE SCREENSHOT OF CONFLICT MARKERS FOR CONFLICT 2 HERE]
+<img width="1389" height="343" alt="Screenshot from 2026-08-17 22-06-02" src="https://github.com/user-attachments/assets/2e628255-23a5-4cae-8c21-95af3456c482" />
 
-- **Caption:** [Brief description of the conflicting branches and file]
+
+- **Caption:** The `feat/conflict-2-staging` and `feat/conflict-2-production` branches independently created `conflict-lab/conflict2.txt` with different contents, causing an add/add conflict when the branches were merged.
 
 ---
 
 ### Conflict 3 — Different Cause
 
-**What cause did you use?** [Name the type of conflict cause — must be different from Conflicts 1 and 2]
+**What cause did you use?** Rename/Delete conflict.
 
-**Why does this cause trigger a conflict?** [1–2 sentences explaining the mechanism]
+**Why does this cause trigger a conflict?** A rename/delete conflict occurs when one branch renames a file while another branch deletes the same file. Git cannot automatically determine whether the renamed file should be retained or whether the deletion should take precedence.
 
-[PASTE SCREENSHOT OF CONFLICT MARKERS FOR CONFLICT 3 HERE]
+<img width="1389" height="343" alt="Screenshot from 2026-08-17 22-18-49" src="https://github.com/user-attachments/assets/0fb9e2e9-e1ab-40ca-8675-7b66ed713e5b" />
 
-- **Caption:** [Brief description of the conflicting branches and file]
 
----
+- **Caption:** The `feat/conflict-3-rename` branch renamed `conflict3.txt` to `deployment-config.txt`, while the `feat/conflict-3-delete` branch deleted the file. Git therefore reported a rename/delete conflict requiring manual resolution.
 
 ## 6. Feedback & Evaluation
 
