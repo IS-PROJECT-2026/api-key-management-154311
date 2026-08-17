@@ -22,32 +22,30 @@
 
 ### A. Your Best Commit
 
-Paste the URL of the commit in your history that you think best demonstrates clean conventional commit practice (good type tag, clear subject, meaningful body or footer).
+**Commit URL:** https://github.com/IS-PROJECT-2026/api-key-management-154311/commit/f26b992bf6568094121b9b803a52b8eb46669805
 
-- **Commit URL:** [Paste the full GitHub commit URL here]
-- **Why this one?** [1–2 sentences explaining what makes this commit well-structured]
+**Why this one?** The `feat(conflicts): add production configuration` commit clearly identifies the change type and scope while using a concise, imperative subject. It also provides a traceable contribution to the workflow, where the production configuration was intentionally created to demonstrate an add/add merge conflict.
 
 ### B. A Mistake or Struggle
 
 Link to a commit, PR, or issue where something went wrong — a bad commit message you had to fix, a branch you had to delete and recreate, a PR that needed rework, or a deployment that broke.
 
-- **Link to the evidence:** [Paste URL here]
-- **What happened and how did you recover?** [2–3 sentences]
+- **Link to the evidence:** https://github.com/IS-PROJECT-2026/api-key-management-154311/pull/26
+- **What happened and how did you recover?** During PR #26, the merge of the staging and production branches produced an intentional add/add conflict because both branches independently created `conflict-lab/conflict2.txt` with different contents. I inspected the conflicting versions, manually resolved the file, committed the resolution, and completed the pull request into `main`.
 
 ### C. A Pull Request You're Proud Of
 
 Paste the URL of the PR that best shows your self-review process — one where the description is clear, the issue linkage is correct, and the diff tells a coherent story.
 
-- **PR URL:** [Paste the full GitHub PR URL here]
-- **What did you check before merging?** [1–2 sentences on what you reviewed]
+- **PR URL:** https://github.com/IS-PROJECT-2026/api-key-management-154311/pull/25
+- **What did you check before merging?** I reviewed the changed files and commit history to verify that the same-line conflict had been resolved cleanly, the conflict markers were removed, and the Conventional Commits correctly referenced Issue #21. I also confirmed that the PR was targeting `main` and that the PR was linked to the correct development issue before merging.
 
 ### D. One Thing You Would Do Differently
 
 If you had to restart this project from scratch with everything you know now, name one specific workflow decision you would change (not a code change — a Git/project management decision).
 
-- **What would you change?** [1–2 sentences]
-- **Link to the evidence of the original decision:** [Paste URL to the commit, branch, or issue that shows the decision you'd redo]
-
+- **What would you change?** I would plan the conflict-demonstration branch structure more carefully from the beginning and use a simpler, consistent naming hierarchy for the temporary conflict branches. This would make the branch history easier to understand while still maintaining the required issue-linked feature branches and isolated development workflow.
+- **Link to the evidence of the original decision:** https://github.com/IS-PROJECT-2026/api-key-management-154311/branches/all
 ---
 
 ## 4. Screenshots of Key GitHub Features
