@@ -45,13 +45,7 @@ const pages = {
         title: "Companies",
         description: "View and manage company profiles linked to your workspace.",
         action: "",
-        content: `
-            <div class="empty-dashboard">
-                <div class="empty-icon">&#x25A5;</div>
-                <h2>No companies registered</h2>
-                <p>Add a company to associate applications and API keys with specific organizations.</p>
-            </div>
-        `
+        content: buildCompaniesTable()
     },
 
     Configurations: {
@@ -139,6 +133,62 @@ function buildApplicationsTable() {
                             <th>Version</th>
                             <th>Company</th>
                             <th>Last Build</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>${rows}</tbody>
+                </table>
+            </div>
+        </div>`;
+}
+
+
+/* =========================
+   Companies Table Builder
+   ========================= */
+
+function buildCompaniesTable() {
+    const companies = [
+        { name: "Pylon Inc.",        industry: "Technology",       hq: "Nairobi, Kenya", employees: 240, apps: 5, status: "Active",   created: "2024-03-10" },
+        { name: "FleetCo",           industry: "Logistics",        hq: "Nairobi, Kenya",        employees: 85,  apps: 2, status: "Active",   created: "2024-06-22" },
+        { name: "LogiTech",          industry: "Supply Chain",     hq: "Nairobi, Kenya",       employees: 170, apps: 1, status: "Active",   created: "2025-01-15" },
+        { name: "NovaPay",           industry: "Fintech",          hq: "Nairobi, Kenya",      employees: 310, apps: 3, status: "Active",   created: "2024-09-05" },
+        { name: "GreenWave Energy",  industry: "Renewables",       hq: "Nairobi, Kenya",        employees: 52,  apps: 1, status: "Inactive", created: "2025-04-18" },
+        { name: "MedBridge Health",  industry: "Healthcare",       hq: "Nairobi, Kenya",        employees: 130, apps: 2, status: "Active",   created: "2024-11-30" },
+        { name: "Trident Retail",    industry: "E-commerce",       hq: "Nairobi, Kenya",       employees: 420, apps: 4, status: "Active",   created: "2023-08-12" },
+        { name: "ArcPoint Labs",     industry: "Biotech",          hq: "Nairobi, Kenya",     employees: 65,  apps: 1, status: "Inactive", created: "2025-07-01" },
+    ];
+
+    const rows = companies.map(c => {
+        const statusClass = c.status === "Active" ? "status-active" : "status-inactive";
+        return `
+            <tr>
+                <td class="key-name">${c.name}</td>
+                <td>${c.industry}</td>
+                <td>${c.hq}</td>
+                <td>${c.employees}</td>
+                <td>${c.apps}</td>
+                <td>${c.created}</td>
+                <td><span class="status-badge ${statusClass}">${c.status}</span></td>
+            </tr>`;
+    }).join("");
+
+    return `
+        <div class="card">
+            <div class="card-header">
+                <h2>All Companies</h2>
+                <span class="card-count">${companies.length} companies</span>
+            </div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Industry</th>
+                            <th>Headquarters</th>
+                            <th>Employees</th>
+                            <th>Apps</th>
+                            <th>Joined</th>
                             <th>Status</th>
                         </tr>
                     </thead>
