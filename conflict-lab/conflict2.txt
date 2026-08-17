@@ -1,1 +1,1 @@
-Pylon configuration loaded from staging.
+Pylon configuration supports both staging and production environments.
