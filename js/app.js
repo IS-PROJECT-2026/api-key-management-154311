@@ -36,14 +36,8 @@ const pages = {
         eyebrow: "Workspace",
         title: "Mobile Applications",
         description: "Manage your registered mobile applications and their settings.",
-        action: "+ Add Application",
-        content: `
-            <div class="empty-dashboard">
-                <div class="empty-icon">&#x25A3;</div>
-                <h2>No applications yet</h2>
-                <p>Register your first mobile application to start tracking configurations and deployments.</p>
-            </div>
-        `
+        action: "",
+        content: buildApplicationsTable()
     },
 
     Companies: {
@@ -96,6 +90,63 @@ const pages = {
         content: buildApiKeysTable()
     }
 };
+
+
+/* =========================
+   Applications Table Builder
+   ========================= */
+
+function buildApplicationsTable() {
+    const apps = [
+        { name: "Pylon iOS",          bundleId: "com.pylon.ios",             platform: "iOS",     version: "3.4.1", status: "Active",   lastBuild: "2026-08-15", company: "Pylon Inc." },
+        { name: "Pylon Android",      bundleId: "com.pylon.android",         platform: "Android", version: "3.4.0", status: "Active",   lastBuild: "2026-08-14", company: "Pylon Inc." },
+        { name: "Pylon Admin",        bundleId: "com.pylon.admin",           platform: "iOS",     version: "1.2.0", status: "Active",   lastBuild: "2026-07-30", company: "Pylon Inc." },
+        { name: "Driver App",         bundleId: "com.pylon.driver",          platform: "Android", version: "2.8.3", status: "Active",   lastBuild: "2026-08-12", company: "FleetCo" },
+        { name: "Driver App (iOS)",   bundleId: "com.pylon.driver.ios",      platform: "iOS",     version: "2.8.2", status: "Active",   lastBuild: "2026-08-10", company: "FleetCo" },
+        { name: "Customer Portal",    bundleId: "com.pylon.portal",          platform: "Web",     version: "1.0.4", status: "Inactive", lastBuild: "2026-05-20", company: "Pylon Inc." },
+        { name: "Legacy Tracker",     bundleId: "com.pylon.tracker.old",     platform: "Android", version: "1.1.0", status: "Retired",  lastBuild: "2025-09-01", company: "Pylon Inc." },
+        { name: "Beta Feedback App",  bundleId: "com.pylon.feedback",        platform: "iOS",     version: "0.9.0", status: "Active",   lastBuild: "2026-08-17", company: "Pylon Inc." },
+        { name: "Warehouse Scanner",  bundleId: "com.pylon.scanner",         platform: "Android", version: "1.5.2", status: "Active",   lastBuild: "2026-08-08", company: "LogiTech" },
+    ];
+
+    const rows = apps.map(a => {
+        const statusClass = a.status === "Active" ? "status-active" : a.status === "Inactive" ? "status-inactive" : "status-revoked";
+        return `
+            <tr>
+                <td class="key-name">${a.name}</td>
+                <td><code class="key-value">${a.bundleId}</code></td>
+                <td>${a.platform}</td>
+                <td>${a.version}</td>
+                <td>${a.company}</td>
+                <td>${a.lastBuild}</td>
+                <td><span class="status-badge ${statusClass}">${a.status}</span></td>
+            </tr>`;
+    }).join("");
+
+    return `
+        <div class="card">
+            <div class="card-header">
+                <h2>All Applications</h2>
+                <span class="card-count">${apps.length} apps</span>
+            </div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Bundle ID</th>
+                            <th>Platform</th>
+                            <th>Version</th>
+                            <th>Company</th>
+                            <th>Last Build</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>${rows}</tbody>
+                </table>
+            </div>
+        </div>`;
+}
 
 
 /* =========================
@@ -183,7 +234,15 @@ function renderPage(pageName) {
     pageEyebrow.textContent = page.eyebrow;
     pageTitle.textContent = page.title;
     pageDescription.textContent = page.description;
-    pageAction.textContent = page.action;
+
+    const pageActions = pageAction.parentElement;
+    if (page.action) {
+        pageAction.textContent = page.action;
+        pageActions.style.display = "";
+    } else {
+        pageActions.style.display = "none";
+    }
+
     pageContent.innerHTML = page.content;
 }
 
