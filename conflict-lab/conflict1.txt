@@ -1,3 +1,3 @@
 Pylon Admin Dashboard
-Environment: Staging
+Environment: Production
 Status: Active
