@@ -23,13 +23,7 @@ const pages = {
         title: "Dashboard",
         description: "Monitor your applications, configurations, and deployments.",
         action: "",
-        content: `
-            <div class="empty-dashboard">
-                <div class="empty-icon">&#x2302;</div>
-                <h2>Welcome back, Mark</h2>
-                <p>Select a section from the sidebar to manage your workspace, or use the button above to create a new application.</p>
-            </div>
-        `
+        content: buildDashboard()
     },
 
     Applications: {
@@ -78,6 +72,89 @@ const pages = {
         content: buildApiKeysTable()
     }
 };
+
+
+/* =========================
+   Dashboard Builder
+   ========================= */
+
+function buildDashboard() {
+    const stats = [
+        { label: "Applications",  value: "9",  change: "+2 this month",   icon: "&#x25A3;", positive: true },
+        { label: "Companies",     value: "8",  change: "+1 this month",   icon: "&#x25A5;", positive: true },
+        { label: "API Keys",      value: "8",  change: "6 active",        icon: "&#x2318;", positive: true },
+        { label: "Configurations", value: "10", change: "8 active",       icon: "&#x2699;", positive: true },
+    ];
+
+    const statCards = stats.map(s => `
+        <div class="stat-card">
+            <div class="stat-icon">${s.icon}</div>
+            <div class="stat-body">
+                <span class="stat-label">${s.label}</span>
+                <span class="stat-value">${s.value}</span>
+                <span class="stat-change ${s.positive ? "change-positive" : "change-negative"}">${s.change}</span>
+            </div>
+        </div>`).join("");
+
+    const barData = [
+        { label: "Mon",   value: 12 },
+        { label: "Tue",   value: 19 },
+        { label: "Wed",   value: 8  },
+        { label: "Thu",   value: 24 },
+        { label: "Fri",   value: 16 },
+        { label: "Sat",   value: 5  },
+        { label: "Sun",   value: 3  },
+    ];
+    const maxBar = Math.max(...barData.map(d => d.value));
+    const bars = barData.map(d => {
+        const pct = Math.round((d.value / maxBar) * 100);
+        return `
+            <div class="bar-col">
+                <div class="bar-value">${d.value}</div>
+                <div class="bar-track"><div class="bar-fill" style="height:${pct}%"></div></div>
+                <div class="bar-label">${d.label}</div>
+            </div>`;
+    }).join("");
+
+    const activity = [
+        { time: "2 min ago",  text: "API key <strong>Monitoring Agent</strong> used from 192.168.1.42" },
+        { time: "18 min ago", text: "<strong>Beta Feedback App</strong> v0.9.0 build succeeded" },
+        { time: "1 hour ago", text: "Configuration <strong>Feature: Dark Mode</strong> updated for Pylon iOS" },
+        { time: "3 hours ago", text: "Company <strong>LogiTech</strong> registered 1 new application" },
+        { time: "5 hours ago", text: "API key <strong>CI/CD Pipeline</strong> authenticated successfully" },
+        { time: "Yesterday",  text: "<strong>Driver App</strong> v2.8.3 deployed to production" },
+        { time: "Yesterday",  text: "Configuration <strong>Session Timeout</strong> changed from 1800 to 3600" },
+        { time: "2 days ago", text: "API key <strong>Deprecated Key</strong> flagged for rotation" },
+    ];
+
+    const activityItems = activity.map(a => `
+        <div class="activity-item">
+            <span class="activity-time">${a.time}</span>
+            <span class="activity-text">${a.text}</span>
+        </div>`).join("");
+
+    return `
+        <div class="stats-grid">${statCards}</div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-header">
+                    <h2>API Requests This Week</h2>
+                    <span class="card-count">87 total</span>
+                </div>
+                <div class="chart-body">
+                    <div class="bar-chart">${bars}</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Recent Activity</h2>
+                </div>
+                <div class="activity-list">${activityItems}</div>
+            </div>
+        </div>`;
+}
 
 
 /* =========================
