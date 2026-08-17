@@ -55,13 +55,7 @@ const pages = {
         title: "Deployments",
         description: "Track deployment history and status across all environments.",
         action: "",
-        content: `
-            <div class="empty-dashboard">
-                <div class="empty-icon">&#x2197;</div>
-                <h2>No deployments yet</h2>
-                <p>Deployments will appear here once you push a configuration to a target environment.</p>
-            </div>
-        `
+        content: buildDeploymentsTable()
     },
 
     "API Keys": {
@@ -319,6 +313,67 @@ function buildConfigurationsTable() {
                             <th>Value</th>
                             <th>Updated</th>
                             <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>${rows}</tbody>
+                </table>
+            </div>
+        </div>`;
+}
+
+
+/* =========================
+   Deployments Table Builder
+   ========================= */
+
+function buildDeploymentsTable() {
+    const deployments = [
+        { id: "DEP-001", app: "Pylon iOS",         env: "Production", version: "3.4.1", status: "Deployed",  triggeredBy: "Mark Talamson", date: "2026-08-15 14:32" },
+        { id: "DEP-002", app: "Pylon Android",     env: "Production", version: "3.4.0", status: "Deployed",  triggeredBy: "CI/CD Pipeline", date: "2026-08-14 09:10" },
+        { id: "DEP-003", app: "Driver App",        env: "Staging",    version: "2.8.3", status: "Deployed",  triggeredBy: "Mark Talamson", date: "2026-08-12 11:45" },
+        { id: "DEP-004", app: "Pylon iOS",         env: "Staging",    version: "3.5.0-beta", status: "Failed", triggeredBy: "CI/CD Pipeline", date: "2026-08-11 16:20" },
+        { id: "DEP-005", app: "Beta Feedback App", env: "Development", version: "0.9.0", status: "Deployed",  triggeredBy: "Mark Talamson", date: "2026-08-10 08:55" },
+        { id: "DEP-006", app: "Warehouse Scanner", env: "Production", version: "1.5.2", status: "Deployed",  triggeredBy: "CI/CD Pipeline", date: "2026-08-08 13:00" },
+        { id: "DEP-007", app: "Pylon Admin",       env: "Production", version: "1.2.0", status: "Deployed",  triggeredBy: "Mark Talamson", date: "2026-07-30 10:15" },
+        { id: "DEP-008", app: "Driver App (iOS)",  env: "Staging",    version: "2.8.2", status: "Rolled Back", triggeredBy: "Mark Talamson", date: "2026-07-28 15:40" },
+        { id: "DEP-009", app: "Pylon Android",     env: "Development", version: "3.5.0-alpha", status: "Pending", triggeredBy: "CI/CD Pipeline", date: "2026-08-17 09:00" },
+        { id: "DEP-010", app: "Customer Portal",   env: "Production", version: "1.0.4", status: "Deployed",  triggeredBy: "Mark Talamson", date: "2026-05-20 12:30" },
+    ];
+
+    const rows = deployments.map(d => {
+        let cls = "status-active";
+        if (d.status === "Failed")      cls = "status-revoked";
+        else if (d.status === "Pending")  cls = "status-inactive";
+        else if (d.status === "Rolled Back") cls = "status-inactive";
+        return `
+            <tr>
+                <td><code class="key-value">${d.id}</code></td>
+                <td class="key-name">${d.app}</td>
+                <td>${d.env}</td>
+                <td>${d.version}</td>
+                <td><span class="status-badge ${cls}">${d.status}</span></td>
+                <td>${d.triggeredBy}</td>
+                <td>${d.date}</td>
+            </tr>`;
+    }).join("");
+
+    return `
+        <div class="card">
+            <div class="card-header">
+                <h2>All Deployments</h2>
+                <span class="card-count">${deployments.length} deployments</span>
+            </div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Application</th>
+                            <th>Environment</th>
+                            <th>Version</th>
+                            <th>Status</th>
+                            <th>Triggered By</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
                     <tbody>${rows}</tbody>
