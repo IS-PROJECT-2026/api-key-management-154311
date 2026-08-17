@@ -60,6 +60,8 @@ _Provide a screenshot showing your active milestone(s) and the granular tracking
 
 <img width="1920" height="487" alt="image" src="https://github.com/user-attachments/assets/d401041f-5ca0-49d3-8dac-61fdbee9c546" />
 
+<img width="1920" height="912" alt="image" src="https://github.com/user-attachments/assets/09e2564e-2403-4f6d-b2bf-6ebec2238c79" />
+
 
 - **Caption:** The Git Workflow & Merge Conflict Resolution milestone contains granular issues for demonstrating and resolving three distinct merge conflict scenarios, with each issue linked to the milestone for structured tracking.
 
@@ -75,10 +77,10 @@ _Provide a screenshot of your GitHub Project Board with your issues organized dy
 
 _Provide a screenshot showing your local or remote Git branch list, highlighting your use of conventional, issue-linked naming patterns (e.g., `feat/`, `fix/`, `style/`)._
 
-<img width="1305" height="745" alt="image" src="https://github.com/user-attachments/assets/5d5a4325-70ac-4df7-b65c-f2ff3a69fd5b" />
+<img width="1920" height="912" alt="image" src="https://github.com/user-attachments/assets/3ecd402e-8ce8-4923-b8fe-bafc4d0ea9cb" />
 
 
-- **Caption:** The branch architecture demonstrates isolated development through issue-linked `feat/`, `docs/`, and other conventional branch prefixes, with changes developed separately from `main`.
+- **Caption:** The branch architecture demonstrates isolated development through issue-linked `feat/`, `docs/`, `fix/`, and other conventional branch prefixes, with changes developed separately from `main`.
 
 ### D. Pull Requests & Traceability
 
