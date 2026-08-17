@@ -53,13 +53,7 @@ const pages = {
         title: "Configurations",
         description: "Centralized configuration management for all your applications.",
         action: "",
-        content: `
-            <div class="empty-dashboard">
-                <div class="empty-icon">&#x2699;</div>
-                <h2>No configurations</h2>
-                <p>Create configurations to manage environment variables, feature flags, and settings across your apps.</p>
-            </div>
-        `
+        content: buildConfigurationsTable()
     },
 
     Deployments: {
@@ -189,6 +183,64 @@ function buildCompaniesTable() {
                             <th>Employees</th>
                             <th>Apps</th>
                             <th>Joined</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>${rows}</tbody>
+                </table>
+            </div>
+        </div>`;
+}
+
+
+/* =========================
+   Configurations Table Builder
+   ========================= */
+
+function buildConfigurationsTable() {
+    const configs = [
+        { name: "Production Env",    app: "Pylon iOS",       type: "Environment",  key: "ENV prod",          value: "production",  status: "Active",   updated: "2026-08-10" },
+        { name: "Staging Env",       app: "Pylon iOS",       type: "Environment",  key: "ENV staging",       value: "staging",     status: "Active",   updated: "2026-08-10" },
+        { name: "API Base URL",      app: "Pylon Android",   type: "Environment",  key: "API_BASE_URL",      value: "https://api.pylon.io/v2", status: "Active", updated: "2026-07-28" },
+        { name: "Feature: Dark Mode", app: "Pylon iOS",      type: "Feature Flag", key: "FF_DARK_MODE",      value: "true",        status: "Active",   updated: "2026-06-15" },
+        { name: "Feature: Analytics", app: "Driver App",     type: "Feature Flag", key: "FF_ANALYTICS",      value: "false",       status: "Inactive", updated: "2026-05-01" },
+        { name: "Push Notifications", app: "Pylon Android",  type: "Feature Flag", key: "FF_PUSH_NOTIF",     value: "true",        status: "Active",   updated: "2026-08-02" },
+        { name: "Max Upload Size",    app: "Warehouse Scanner", type: "Setting",   key: "MAX_UPLOAD_MB",     value: "50",          status: "Active",   updated: "2026-04-20" },
+        { name: "Session Timeout",    app: "Pylon Admin",     type: "Setting",     key: "SESSION_TIMEOUT_S", value: "3600",        status: "Active",   updated: "2026-03-12" },
+        { name: "Debug Logging",      app: "Driver App",     type: "Setting",     key: "DEBUG_LOG",         value: "false",       status: "Inactive", updated: "2026-01-08" },
+        { name: "Cache TTL",          app: "Customer Portal", type: "Setting",    key: "CACHE_TTL_S",       value: "300",         status: "Active",   updated: "2026-07-19" },
+    ];
+
+    const rows = configs.map(c => {
+        const statusClass = c.status === "Active" ? "status-active" : "status-inactive";
+        return `
+            <tr>
+                <td class="key-name">${c.name}</td>
+                <td>${c.app}</td>
+                <td>${c.type}</td>
+                <td><code class="key-value">${c.key}</code></td>
+                <td>${c.value}</td>
+                <td>${c.updated}</td>
+                <td><span class="status-badge ${statusClass}">${c.status}</span></td>
+            </tr>`;
+    }).join("");
+
+    return `
+        <div class="card">
+            <div class="card-header">
+                <h2>All Configurations</h2>
+                <span class="card-count">${configs.length} configs</span>
+            </div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Application</th>
+                            <th>Type</th>
+                            <th>Key</th>
+                            <th>Value</th>
+                            <th>Updated</th>
                             <th>Status</th>
                         </tr>
                     </thead>
